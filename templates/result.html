@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detection Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Detection Results</h1>
+
+    {% if detections %}
+        <ul>
+        {% for det in detections %}
+            <li><strong>{{ det.class }}</strong>: {{ det.confidence }}% confidence</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No fracture detected.</p>
+    {% endif %}
+
+    <h2>Annotated Image</h2>
+    <img src="data:image/jpeg;base64,{{ image_base64 }}" alt="Annotated Image">
+    <br><br>
+    <a href="/">&#8592; Detect another image</a>
+</body>
+</html>
